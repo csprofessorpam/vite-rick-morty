@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import './HomePage.css'
 import axios from 'axios'
 import CharacterCard from '../../components/CharacterCard/CharacterCard'
+import Search from '../../components/Search/Search'
 
 function HomePage() {
 
@@ -21,11 +22,12 @@ function HomePage() {
     )
   return (
     <div className="home-container">
+        <Search setCharacters={setCharacters} />
         <h1>Main Characters</h1>
         <div className="characters-container">
             {
                 characters.map(item=><CharacterCard key={item.id} character={item} />)
-                // characters.map(item=><p>{item.name}</p>)
+                // characters.map(item=><p>{item?.name}</p>)
                 
             }
         </div>
