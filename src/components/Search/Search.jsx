@@ -18,13 +18,23 @@ function Search({setCharacters}) {
             console.log(res.data.results)
             setCharacters(res.data.results)
         })
-        .catch(err => console.log(err))
+        .catch(err => {
+          if (err.response.status === 404){
+            alert(`There is no character named ${query}`)
+          }
+          else{
+            console.log(err)
+          }
+        })
+
+        //clear textbox
+        setQuery('')
 
     }
 
   return (
     <form className="search-container" onSubmit={handleSubmit}>
-        <input type="text" 
+        <input type="text" value={query}
                placeholder="Search all characters"
                onChange={(e)=>setQuery(e.target.value)} />
 
