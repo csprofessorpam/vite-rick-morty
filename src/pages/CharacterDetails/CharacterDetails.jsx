@@ -22,12 +22,14 @@ function CharacterDetails() {
     )
 
   return (
-    <div>CharacterDetails {id}
+    <div className="details-container">
     <img src={character.image} />
-    <p>Name: {character.name}</p>
-    <p>Gender: {character.gender}</p>
-    <p>Location: {character?.location?.name}</p>
-    <p>Species: {character.species}</p>
+    <div className="container-info">
+      <p>Name: {character.name}</p>
+      <p>Gender: {character.gender}</p>
+      <p>Location: {character?.location?.name}</p>
+      <p>Species: {character?.species}</p>
+    </div>
     </div>
   )
 }
