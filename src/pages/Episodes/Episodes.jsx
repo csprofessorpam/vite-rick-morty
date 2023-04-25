@@ -1,12 +1,16 @@
 import React from 'react'
 import './Episodes.css'
 import axios from 'axios'
+import CharacterCard from '../../components/CharacterCard/CharacterCard'
+
 
 function Episodes() {
 
   //create state to hold the episode numbers
   const [options, setOptions] = React.useState([])
   const [selectedOption, setSelectedOption] = React.useState(1)
+  const [selectedEpisode, setSelectedEpisode] = React.useState()
+  const [characterList, setCharacterList] = React.useState([])
 
   //first need to create the dropdown with episode list
   //need to find out the number of episodes when the page loads
@@ -49,22 +53,43 @@ function Episodes() {
       //character in that episode
       //use async js
       const fetchEpisodeData = async () =>{
+        //console.log('fetching')
         
         try{
-          console.log('get episode data')
+          //console.log('get episode data')
           //make api call, wait for result
           const res = await axios.get(`https://rickandmortyapi.com/api/episode/${selectedOption}`);
 
-          console.log(res)
+          console.log(res.data)
+          //need to store this episode data in state
+          setSelectedEpisode(res.data)
+
+          //characters has the endpoint needed to get 
+          //each character's data
+          //need to make all these api calls to 
+          //gather the info to render 
+
+          const episodeCharacters = await Promise.all(
+            res.data.characters.map(url => {
+              return axios.get(url).then(res => res.data)
+            })
+          )
+          console.log(episodeCharacters)
+          //store in state
+          setCharacterList(episodeCharacters)
+          //now map to CharacterCard to render 
+
 
         }catch (err){
           console.log(err)
         }
-        console.log('call function')
+        //console.log('try done')
+        
+      }
+      
+      //console.log('call function')
         //have to call the function!
         fetchEpisodeData()
-      }
-      console.log('try done')
 
     }, [selectedOption]
   )
@@ -82,11 +107,13 @@ function Episodes() {
       </div>
       <div>
         <div className="episode-info">
-          <p>Episode Name:</p>
-          <p>Air Date:</p>
+          <p>Episode Name: {selectedEpisode?.name}</p>
+          <p>Air Date: {selectedEpisode?.air_date}</p>
         </div>
         <div className="character-container">
-          Cards go here
+          {
+            characterList.map(item => <CharacterCard character={item} key={item.id} />)
+          }
         </div>
       </div>
     </div>
