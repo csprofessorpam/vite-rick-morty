@@ -1,0 +1,5 @@
+.episodes-container{
+    min-height: 100vh;
+    padding: 25px;
+    display: flex;
+}

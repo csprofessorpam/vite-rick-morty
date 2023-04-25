@@ -5,14 +5,14 @@ import axios from 'axios'
 
 function CharacterDetails() {
 
-    const {id} = useParams();
+    const {characterId} = useParams();
     //https://rickandmortyapi.com/api/character/2
 
 
     const[character, setCharacter] = React.useState('')
     React.useEffect(
         ()=>{
-            axios.get(`https://rickandmortyapi.com/api/character/${id}`)
+            axios.get(`https://rickandmortyapi.com/api/character/${characterId}`)
             .then(res =>{
                 console.log(res.data.location.name)
                 setCharacter(res.data)
