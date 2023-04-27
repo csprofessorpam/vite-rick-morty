@@ -26,6 +26,7 @@ function Episodes() {
 
   React.useEffect(
     ()=>{
+      //first find out the number of episodes
         axios.get("https://rickandmortyapi.com/api/episode")
         .then(res=>{
           console.log(res.data.info.count)
@@ -64,8 +65,8 @@ function Episodes() {
           //need to store this episode data in state
           setSelectedEpisode(res.data)
 
-          //characters has the endpoint needed to get 
-          //each character's data
+          //res.data.characters has the endpoint needed 
+          //to get each character's data
           //need to make all these api calls to 
           //gather the info to render 
 
