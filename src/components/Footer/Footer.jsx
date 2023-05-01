@@ -1,8 +1,15 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import './Footer.css'
 import Modal from 'react-modal'
+//provides access to global state
+import {ThemeContext} from '../../contexts/ThemeContext'
+
 
 function Footer() {
+
+  //se global state
+  //NOTE {} not []
+  const {darkMode, setDarkMode} = useContext(ThemeContext)
 
   //create state to control Modal
   const [isOpen, setIsOpen] = React.useState(false);
@@ -16,7 +23,7 @@ function Footer() {
       bottom: 'auto',
       // marginRight: '-50%',
       transform: 'translate(-50%, -50%)',
-      width: '600px'
+      width: '600px',
     },
     overlay:{
       backgroundColor:"rgba(0, 0, 0, 0.6)"
@@ -27,7 +34,7 @@ function Footer() {
   Modal.setAppElement(document.getElementById('root'));
 
   return (
-    <div className="footer-container">
+    <div className={darkMode?"footer-container footer-dark":"footer-container"}>
         <button className="contact-btn"
                 onClick={()=>setIsOpen(true)}>Contact Us
         </button>

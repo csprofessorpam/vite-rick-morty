@@ -18,10 +18,48 @@ function Episodes() {
 
   //now store selected episode when dropdown changes, requires value={num}
 
+  
+
+  const fetchEpisodeData = async () =>{
+    //console.log('fetching')
+    
+    try{
+      //console.log('get episode data')
+      //make api call, wait for result
+      const res = await axios.get(`https://rickandmortyapi.com/api/episode/${selectedOption}`);
+
+      console.log(res.data)
+      //need to store this episode data in state
+      setSelectedEpisode(res.data)
+
+      //res.data.characters has the endpoint needed 
+      //to get each character's data
+      //need to make all these api calls to 
+      //gather the info to render 
+
+      const episodeCharacters = await Promise.all(
+        res.data.characters.map(url => {
+          return axios.get(url).then(res => res.data)
+        })
+      )
+      console.log(episodeCharacters)
+      //store in state
+      setCharacterList(episodeCharacters)
+      //now map to CharacterCard to render 
+
+
+    }catch (err){
+      console.log(err)
+    }
+    //console.log('try done')
+    
+  }
+
   const handleSelectChange = (e)=>{
     console.log(e.target.value)
     //this needs to be stored in state
     setSelectedOption(e.target.value)
+    fetchEpisodeData()
   }
 
   React.useEffect(
@@ -41,10 +79,13 @@ function Episodes() {
 
         })
         .catch(err => console.log(err))
+
+        fetchEpisodeData()
     }, []
   )
 
   //need useEffect to run when selectedOption changes
+  /*
   React.useEffect(
     ()=>{
       console.log('you selected', selectedOption)
@@ -94,6 +135,7 @@ function Episodes() {
 
     }, [selectedOption]
   )
+  */
   return (
     <div className="episodes-container">
       <div>

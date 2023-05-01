@@ -3,6 +3,12 @@
     padding:10px;
     color:var(--white);
   }
+
+  .footer-dark{
+    background-color: black;
+    border-top:solid 1px gray;
+}
+
 .contact-btn{
     cursor:pointer;
     background-color: transparent;
@@ -31,8 +37,8 @@
 }
 
 .modal-close-btn:hover {
-  color: var(--primary-bg);
-  /* color: red; */
+  /* color: var(--primary-bg); */
+  color: red;
 }
 
 form label {

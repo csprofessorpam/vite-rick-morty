@@ -8,6 +8,11 @@
     color:var(--white);
 }
 
+.header-dark{
+    background-color: black;
+    border-bottom:solid 1px gray;
+}
+
 .theme-button{
     padding:5px 10px;
     border-radius:8px;
@@ -15,4 +20,8 @@
     cursor:pointer;
     background-color:  var(--light-theme-btn);
     color:var(--white);
+}
+
+.theme-button-dark{
+    background-color: var(--dark-theme-btn);
 }
