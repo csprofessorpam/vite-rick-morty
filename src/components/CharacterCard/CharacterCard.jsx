@@ -9,12 +9,24 @@ import { FavoritesContext } from '../../contexts/FavoritesContext';
 
 
 function CharacterCard({character}) {
-  //start with variable to test UI
-  const isFavorite = false;
 
   //change to use global state
   //NOTE {} not []
   const {favorites, addCharacter, removeCharacter} = useContext(FavoritesContext)
+
+  //start with variable to test UI
+  //const isFavorite = false;
+  const [isFavorite, setIsFavorite] = React.useState(false)
+
+  React.useEffect(
+    ()=>{
+      //is this card in favorites?
+      setIsFavorite(favorites?.find(item=>item.id===character.id))
+      console.log(isFavorite)
+    }, []
+  )
+
+  
 
   return (
     <div className="character-card">
@@ -23,8 +35,9 @@ function CharacterCard({character}) {
         <div className="button-container">
         <Link to={`/details/${character.id}`}>See Details</Link>
         {
-          //isFavorite?
-          favorites && favorites?.find(item=>item.id===character.id)
+          
+          //favorites && favorites?.find(item=>item.id===character.id)
+          isFavorite
           ?
           <FaHeart className='heart-icon'
           onClick={()=>removeCharacter(character.id)} />

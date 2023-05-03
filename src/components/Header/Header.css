@@ -20,6 +20,7 @@
     cursor:pointer;
     background-color:  var(--light-theme-btn);
     color:var(--white);
+    margin-left: 20px;
 }
 
 .theme-button-dark{
