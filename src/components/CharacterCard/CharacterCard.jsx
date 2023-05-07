@@ -23,7 +23,7 @@ function CharacterCard({character}) {
       //is this card in favorites?
       setIsFavorite(favorites?.find(item=>item.id===character.id))
       console.log(isFavorite)
-    }, []
+    }, [favorites]
   )
 
   
