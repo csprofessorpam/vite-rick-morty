@@ -24,6 +24,7 @@ function Footer() {
       // marginRight: '-50%',
       transform: 'translate(-50%, -50%)',
       width: '600px',
+      zIndex:'3'
     },
     overlay:{
       backgroundColor:"rgba(0, 0, 0, 0.6)"

@@ -32,7 +32,7 @@ function CharacterCard({character}) {
     <div className="character-card">
         <img src={character.image} />
         <p>{character.name}</p>
-        <div className="button-container">
+        {/* <div className="button-container"> */}
         <Link to={`/details/${character.id}`}>See Details</Link>
         {
           
@@ -45,7 +45,7 @@ function CharacterCard({character}) {
           <FaRegHeart className='heart-icon' 
             onClick={()=>addCharacter(character)}/>
         }
-        </div>
+        {/* </div> */}
     </div>
   )
 }

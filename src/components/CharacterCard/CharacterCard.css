@@ -11,6 +11,8 @@
     -webkit-box-shadow: 7px 8px 13px -4px rgba(0,0,0,0.47);
     -moz-box-shadow: 7px 8px 13px -4px rgba(0,0,0,0.47);
     background-color: white;
+    color: black;
+    position: relative;
 }
 
 .character-card img{
@@ -30,15 +32,17 @@
     cursor:pointer;
 }
 
-.button-container{
-    /* width: 70%; */
+ /* .button-container{
     display: flex;
     align-items: center;
-    /* justify-content: space-between; */
-}
+}  */
+
  .heart-icon{
     color:var(--primary-bg);
     font-size:20px;
     cursor:pointer;
     margin-left: 20px;
+    position: absolute;
+    bottom: 15px;
+    left: 0px;
   } 
