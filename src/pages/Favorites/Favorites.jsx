@@ -19,7 +19,10 @@ function Favorites() {
       <div className="favorite-characters">
         {
             // favorites.map(item=><p>{item.name}</p>)
+            favorites.length > 0 ?
             favorites.map ((item=><CharacterCard key={item.id} character={item} />))
+            :
+            <p>No favorites selected yet</p>
         }
         </div>
     </div>
