@@ -64,7 +64,7 @@ function Episodes() {
     console.log(e.target.value)
     //this needs to be stored in state
     setSelectedOption(e.target.value)
-    fetchEpisodeData()
+    //fetchEpisodeData()
   }
 
   React.useEffect(
@@ -77,7 +77,9 @@ function Episodes() {
           const newOptions = []
           for (let i = 1; i <= res.data.info.count; i++){
             newOptions.push(i)
+            //options.push[i]
           }
+          console.log(options)
           //console.log(newOptions)
           //store in state
           setOptions(newOptions)
@@ -85,12 +87,12 @@ function Episodes() {
         })
         .catch(err => console.log(err))
 
-        fetchEpisodeData()
+        //fetchEpisodeData()
     }, []
   )
 
   //need useEffect to run when selectedOption changes
-  /*
+  
   React.useEffect(
     ()=>{
       console.log('you selected', selectedOption)
@@ -99,40 +101,45 @@ function Episodes() {
       //but then need to make api call for each 
       //character in that episode
       //use async js
-      const fetchEpisodeData = async () =>{
-        //console.log('fetching')
+      //asynch makes a function return a promise
+      // const fetchEpisodeData = async () =>{
+      //   //console.log('fetching')
         
-        try{
-          //console.log('get episode data')
-          //make api call, wait for result
-          const res = await axios.get(`https://rickandmortyapi.com/api/episode/${selectedOption}`);
+      //   try{
+      //     //console.log('get episode data')
+      //     //make api call, wait for result
+      //     //await makes the function pause and wait for
+      //     //resolved promise before continuing
+      //     //we have to make multiple api calls so easier
+      //     //in try catch
+      //     //get the specific episode data
+      //     const res = await axios.get(`https://rickandmortyapi.com/api/episode/${selectedOption}`);
 
-          console.log(res.data)
-          //need to store this episode data in state
-          setSelectedEpisode(res.data)
+      //     console.log(res.data)
+      //     //need to store this episode data in state
+      //     setSelectedEpisode(res.data)
 
-          //res.data.characters has the endpoint needed 
-          //to get each character's data
-          //need to make all these api calls to 
-          //gather the info to render 
+      //     //res.data.characters has the endpoint needed 
+      //     //to get each character's data
+      //     //need to make all these api calls to 
+      //     //gather the info to render 
 
-          const episodeCharacters = await Promise.all(
-            res.data.characters.map(url => {
-              return axios.get(url).then(res => res.data)
-            })
-          )
-          console.log(episodeCharacters)
-          //store in state
-          setCharacterList(episodeCharacters)
-          //now map to CharacterCard to render 
+      //     const episodeCharacters = await Promise.all(
+      //       res.data.characters.map(url => {
+      //         return axios.get(url).then(res => res.data)
+      //       })
+      //     )
+      //     console.log(episodeCharacters)
+      //     //store in state
+      //     setCharacterList(episodeCharacters)
+      //     //now map to CharacterCard to render 
 
-
-        }catch (err){
-          console.log(err)
-        }
-        //console.log('try done')
+      //   }catch (err){
+      //     console.log(err)
+      //   }
+      //   //console.log('try done')
         
-      }
+      // }
       
       //console.log('call function')
         //have to call the function!
@@ -140,7 +147,7 @@ function Episodes() {
 
     }, [selectedOption]
   )
-  */
+  
   return (
     <div className={darkMode?"episodes-container episodes-dark"  :"episodes-container"}>
       <div>

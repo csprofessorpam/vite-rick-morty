@@ -13,6 +13,9 @@ function HomePage() {
 
     const [characters, setCharacters] = useState([])
 
+    //to do multiple pages need an array of page numbers
+    
+
     //https://rickandmortyapi.com/api/character
     useEffect(
         ()=>{
